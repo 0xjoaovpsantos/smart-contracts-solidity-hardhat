@@ -1,4 +1,20 @@
-# To run the scripts
+# Ballot
+
+## To run the script to get report of transactions
+
+- In your command line execute the script:
+``` 
+npx ts-node ./scripts/ReportVotes.ts Proposal1 Proposal2
+```
+
+<img src='./github/report-votes.png' alt='Report votes'/>
+
+## To run the scripts
+
+- Run report of votes
+``` 
+npx ts-node ./scripts/ReportVotes.ts Proposal1 Proposal2
+```
 
 - Deploy with Hardhat
 ``` 
