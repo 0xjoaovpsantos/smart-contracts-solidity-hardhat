@@ -1,3 +1,15 @@
+# To run the scripts
+
+- Deploy with Hardhat
+``` 
+npx ts-node ./scripts/DeployWithHardhat.ts Proposal1 Proposal2
+```
+
+- Deploy with Ethers
+```
+npx ts-node ./scripts/DeployWithEthers.ts Proposal1 Proposal2
+``````
+
 # Sample Hardhat Project
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.

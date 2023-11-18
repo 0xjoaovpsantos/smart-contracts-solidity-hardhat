@@ -16,6 +16,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^4.0.0"
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "dotenv": "^16.3.1"
   }
 }
