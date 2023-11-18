@@ -7,7 +7,7 @@
 npx ts-node ./scripts/ReportVotes.ts Proposal1 Proposal2
 ```
 
-<img src='./github/report-votes.png' alt='Report votes'/>
+<img src='./.github/report-votes.png' alt='Report votes'/>
 
 ## To run the scripts
 
