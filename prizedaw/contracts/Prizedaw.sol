@@ -3,7 +3,7 @@ pragma solidity >=0.7.0 <0.9.0;
 
 contract ContractPrizedaw {
     address owner;
-    address[] admins;
+    mapping(address => bool) administrators;
 
     struct Prizedaw {
         uint256 id;
@@ -30,10 +30,7 @@ contract ContractPrizedaw {
         uint256 blocktimestamp
     );
 
-    event Withdraw(
-        address userAddress,
-        uint256 value
-    );
+    event Withdraw(address userAddress, uint256 value);
 
     modifier onlyOwner() {
         require(
@@ -45,37 +42,29 @@ contract ContractPrizedaw {
 
     modifier onlyAdminOrOwner() {
         address senderOfTx = msg.sender;
-        if (checkForAdmin(senderOfTx)) {
-            require(checkForAdmin(senderOfTx), "Caller not admin");
+        bool isAdmin = checkForAdmin(senderOfTx);
+
+        if (senderOfTx == owner || isAdmin) {
             _;
-        } else if (senderOfTx == owner) {
-            _;
-        } else {
-            revert(
-                "modifier : revert happened because the originator of the transaction was not the admin, and furthermore he wasn't the owner of the contract, so he cannot run this function"
-            );
+            return;
         }
+
+        require(
+            isAdmin,
+            "Only onwer or administrator is allow to perform this action"
+        );
     }
 
     function checkForAdmin(address _user) public view returns (bool admin_) {
-        assembly {
-            admin_ := false
-            for {
-                let ii := 0
-            } lt(ii, admins.slot) {
-                ii := add(ii, 1)
-            } {
-                let slot := sload(admins.slot)
-                let value := shr(mul(admins.offset, ii), slot)
-                if eq(value, _user) {
-                    admin_ := true
-                }
-            }
-        }
+        return administrators[_user];
     }
 
     function addAdmin(address newAdmin) public onlyOwner {
-        admins.push(newAdmin);
+        administrators[newAdmin] = true;
+    }
+
+    function removeAdmin(address newAdmin) public onlyOwner {
+        administrators[newAdmin] = false;
     }
 
     function getContractBalance() public view returns (uint256) {

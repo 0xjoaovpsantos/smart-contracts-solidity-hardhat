@@ -40,8 +40,27 @@ async function main() {
   let userBalance;
   let contractBalance;
 
-  contractBalance = await contractPrizedaw.getContractBalance()
+  contractBalance = await contractPrizedaw.getContractBalance();
   console.log(`contractBalance: ${contractBalance}\n `);
+
+  tx = await contractPrizedaw.addAdmin(signers[2].address);
+  receipt = await tx.wait();
+  console.log(
+    `Function 'addAdmin(${signers[2].address})' from ${signers[0].address} hash: ${receipt?.hash}`
+  );
+  console.log(
+    `Function 'addAdmin(${signers[2].address})' from ${signers[0].address} status: ${receipt?.status}\n`
+  );
+
+  tx = await (
+    (await contractPrizedaw.connect(signers[2])) as ContractPrizedaw
+  ).checkForAdmin(signers[2].address);
+  console.log(`${signers[2].address} is admin: ${tx}\n`);
+
+  tx = await (
+    (await contractPrizedaw.connect(signers[3])) as ContractPrizedaw
+  ).checkForAdmin(signers[3].address);
+  console.log(`${signers[3].address} is admin: ${tx}\n`);
 
   tx = await contractPrizedaw.createPrizedaw(idPrizedaw);
   receipt = await tx.wait();
@@ -66,7 +85,7 @@ async function main() {
     `Function 'buyTicket(${idPoolA})' with value ${valueBuyTicket} from ${signers[0].address} status: ${receipt?.status}\n`
   );
 
-  contractBalance = await contractPrizedaw.getContractBalance()
+  contractBalance = await contractPrizedaw.getContractBalance();
   console.log(`contractBalance: ${contractBalance}\n `);
 
   tx = await contractPrizedaw.getCurrentPrizedaw();
@@ -85,7 +104,7 @@ async function main() {
     `Function 'buyTicket(${idPoolB})' with value ${valueBuyTicket} from ${signers[3].address} status: ${receipt?.status}\n`
   );
 
-  contractBalance = await contractPrizedaw.getContractBalance()
+  contractBalance = await contractPrizedaw.getContractBalance();
   console.log(`contractBalance: ${contractBalance}\n `);
 
   tx = await contractPrizedaw.getCurrentPrizedaw();
@@ -107,7 +126,7 @@ async function main() {
     `Function 'buyTicket(${idPoolB})' with value ${valueBuyTicket} from ${signers[2].address} status: ${receipt?.status}\n`
   );
 
-  contractBalance = await contractPrizedaw.getContractBalance()
+  contractBalance = await contractPrizedaw.getContractBalance();
   console.log(`contractBalance: ${contractBalance}\n `);
 
   tx = await contractPrizedaw.getCurrentPrizedaw();
@@ -167,7 +186,7 @@ async function main() {
   tx = await contractPrizedaw.getCurrentPrizedaw();
   logCurrentPrize(tx);
 
-  contractBalance = await contractPrizedaw.getContractBalance()
+  contractBalance = await contractPrizedaw.getContractBalance();
   console.log(`contractBalance: ${contractBalance}\n `);
 }
 

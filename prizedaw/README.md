@@ -1,5 +1,9 @@
 # Prizedaw
 
+## Contract Address in the Sepolia Testnet
+
+- 0x04F713DAd843FefC7570B328E2392677fE711795
+
 ## To run the scripts
 
 - Run PrizedawFlowWithHardhat.ts to know more about the flow of contract:
