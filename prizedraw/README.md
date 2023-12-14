@@ -2,7 +2,7 @@
 
 ## Contract Address in the Sepolia Testnet
 
-- 0x04F713DAd843FefC7570B328E2392677fE711795
+- 0xeeF430849E27Fa0A5359efa51CBc8F04B5C01252
 
 ## To run the scripts
 
